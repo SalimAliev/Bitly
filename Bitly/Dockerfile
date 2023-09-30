@@ -1,0 +1,14 @@
+FROM python:3.10.11
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+WORKDIR /app
+
+ADD . /app
+
+RUN pip install -r prod_req.txt
+
+EXPOSE 8000
+
+
