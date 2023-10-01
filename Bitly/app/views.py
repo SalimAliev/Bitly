@@ -9,7 +9,7 @@ from .serializers import UrlSerializer
 import random
 import string
 
-
+# Function for generate short url key
 def generate_shor_url_key():
     letters = string.ascii_lowercase + string.digits
     key_length = 10
@@ -20,6 +20,7 @@ def generate_shor_url_key():
 
 
 class UrlsListView(APIView):
+    # Getting a list of URLs and URL
     def get(self, request, url_id=None):
         if url_id:
             serializer = UrlSerializer(get_object_or_404(Url, pk=url_id))
@@ -27,6 +28,7 @@ class UrlsListView(APIView):
             serializer = UrlSerializer(Url.objects.all(), many=True)
         return Response({'urls': serializer.data})
 
+    # Added a new URL in database
     def post(self, request):
         request.data['short_url'] = generate_shor_url_key()
         serializer = UrlSerializer(data=request.data)
@@ -36,6 +38,7 @@ class UrlsListView(APIView):
 
 
 class UrlRedirectView(APIView):
+    # Redirect by short link
     def get(self, request, short_url):
         url = get_object_or_404(Url, short_url=short_url)
         if url.is_active:
