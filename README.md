@@ -58,3 +58,4 @@ Open your browser
     "long_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     }
    ```
+4. To use the crown link, make a get request: http://localhost:8000/riqqva7z00 (at the end, specify the short link token)
